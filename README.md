@@ -1,6 +1,6 @@
 # sicp_register_machine
 
-Just only for self-study purpose.
+Just only for my self-study purpose.
 
 ## BUILD
 Just run `make`.
