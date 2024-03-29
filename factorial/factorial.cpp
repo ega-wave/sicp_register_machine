@@ -27,37 +27,6 @@ If not, see <https://www.gnu.org/licenses/>.
  * Written by Yoshitaka Egawa.
  */
 
-/**
- * (define (factorial n)
- *   (if (= n 1)
- *       1
- *       (* (factorial (- n 1)) n))) 
- */
-
-/**
-
-(controller
-   (assign continue (label fact-done))
- fact-loop   
-   (test (op =) (reg n) (const 1))
-   (branch (label base-case))
-   (save continue)
-   (save n)
-   (assign n (op -) (reg n) (const 1))
-   (assign continue (label after-fact))
-   (goto (label fact-loop))
- after-fact
-   (restore n)
-   (restore continue)
-   (assign val (op *) (reg n) (reg val)) ; val = n * (n-1)!;
-   (goto (reg continue))
- base-case
-   (assign val (const 1))
-   (goto (reg continue))
- fact-done)
-
- */
-
 #include <stack>
 #include <cstdio>
 
@@ -106,21 +75,6 @@ func controller[] = {
 #define LABEL_AFTER_FACT 7
 #define LABEL_BASE_CASE 11
 #define LABEL_FACT_DONE 13
-
-func library [] = {
- do0 // (test (op =) (reg n) (const 1))
-,do1 // (branch (label base-case))
-,do2 // (save continue)
-,do3 // (save n)
-,do4 // (assign n (op -) (reg n) (const 1))
-,do5 // (assign continue (label after-fact))
-,do6 // (goto (label fact-loop))
-,do7 // (restore n)
-,do8 // (restore continue)
-,do9 // (assign val (op *) (reg n) (reg val))
-,do10 // (goto (reg continue))
-,do11 // (assign val (const 1))
-};
 
 /**
  * (test (op =) (reg n) (const 1))
