@@ -90,11 +90,38 @@ func controller[] = {
 #define LABEL_IMMEDIATE_ANSWER 19
 #define LABEL_FIB_DONE         21
 
+/*
+static
+void
+print_stack()
+{
+  std::stack<int> tmp_stack;
+  std::printf("[");
+
+  // the_stack -> tmp_stack
+  for (; !the_stack.empty();) {
+    int tmp = the_stack.top();
+    std::printf("%d ", tmp);
+    tmp_stack.push(tmp);
+    the_stack.pop();
+  }
+  std::printf("]\n");
+
+  // tmp_stack -> the_stack
+  for (; !tmp_stack.empty();) {
+    int tmp = tmp_stack.top();
+    the_stack.push(tmp);
+    tmp_stack.pop();
+  }
+}
+*/
+
 /**
  * test n < 2;
  */
 void do0()
 {
+//printf(" %2d: %2d %2d %2d ", reg_pc, reg_n, reg_val, reg_continue); print_stack();
   reg_flag = ((reg_n < 2) ? 1 : 0);
   reg_pc++;
 }
@@ -160,6 +187,7 @@ void do6()
  */
 void do7()
 {
+//printf(" %2d: %2d %2d %2d ", reg_pc, reg_n, reg_val, reg_continue); print_stack();
   reg_n = the_stack.top();
   the_stack.pop();
   reg_pc++;
@@ -198,6 +226,7 @@ void do10()
  */
 void do11()
 {
+//printf(" %2d: %2d %2d %2d ", reg_pc, reg_n, reg_val, reg_continue); print_stack();
   reg_n = reg_val;
   reg_pc++;
 }
@@ -234,6 +263,7 @@ void do14()
  */
 void do15()
 {
+//printf(" %2d: %2d %2d %2d ", reg_pc, reg_n, reg_val, reg_continue); print_stack();
   reg_val = reg_n;
   reg_pc++;
 }
@@ -254,6 +284,7 @@ void fib_main()
     if (! f) break;
     (*f)();
   }
+//printf(" %2d: %2d %2d %2d ", reg_pc, reg_n, reg_val, reg_continue); print_stack();
 }
 
 static
