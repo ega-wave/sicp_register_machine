@@ -44,11 +44,9 @@ std::stack<int> the_stack;
 void do0();
 void do1();
 void do2();
-void do3();
 void do4();
 void do5();
 void do6();
-void do7();
 void do8();
 void do9();
 void do10();
@@ -59,11 +57,9 @@ func controller[] = {
 /*  0: expt-loop:  */ do0 // test n == 0
 /*  1:             */,do1 // if true, goto base_case
 /*  2:             */,do2 // save continue
-// /*  3:             */,do3 save b
 /*  3:             */,do4 // n = n -1
 /*  4:             */,do5 // continue = after-expt
 /*  5:             */,do6 // goto expt-loop
-// /*  7: after-expt: */,do7 restore n
 /*  6:             */,do8 // restore continue
 /*  7:             */,do9 // val = val * b
 /*  8:             */,do10 // goto continue
@@ -108,15 +104,6 @@ void do2()
 }
 
 /**
- * (save n)
- */
-void do3()
-{
-  the_stack.push(reg_n);
-  reg_pc++;
-}
-
-/**
  * n = n -1
  */
 void do4()
@@ -140,16 +127,6 @@ void do5()
 void do6()
 {
   reg_pc = LABEL_EXPT_LOOP;
-}
-
-/**
- * (restore n)
- */
-void do7()
-{
-  reg_n = the_stack.top();
-  the_stack.pop();
-  reg_pc++;
 }
 
 /**
